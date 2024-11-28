@@ -1,0 +1,28 @@
+# Virtual environment
+.botvenv/
+__pycache__/
+
+# Python bytecode
+*.pyc
+*.pyo
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Templates cache
+templates/__pycache__/
+
+# PyTorch model
+dialog_model.pt
+
+# Data folder
+data/
+
+# Processed data
+processed_data/
