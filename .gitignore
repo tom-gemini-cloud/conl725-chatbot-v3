@@ -27,3 +27,6 @@ data/
 
 # Processed data
 processed_data/
+
+# DS Store
+.DS_Store
