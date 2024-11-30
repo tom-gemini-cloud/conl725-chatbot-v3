@@ -1,18 +1,16 @@
 # Rule-Based Chatbot
 
-A sophisticated rule-based chatbot implementation using Natural Language Processing (NLP) techniques and machine learning for intelligent conversation handling.
+A rule-based chatbot implementation using Natural Language Processing (NLP) techniques and machine learning for intelligent conversation handling.
 
 ## Features
 
 - Advanced text preprocessing and tokenization
-- TF-IDF vectorization for response matching
 - Context-aware responses using conversation history
 - Multiple response strategies:
   - Context-based matching
   - Similarity-based matching
   - Keyword-based matching
-- Robust error handling and logging
-- Interactive command-line interface
+- Error handling and logging
 
 ## Prerequisites
 
