@@ -26,7 +26,7 @@ templates = Jinja2Templates(directory="templates")
 # Initialise both chatbots
 # Rule-based uses pre-processed conversation data
 # Transformer-based uses a fine-tuned dialogue model
-rule_based_chatbot = RuleBasedChatbot(data_path='./processed_data/processed_conversations.pkl')
+rule_based_chatbot = RuleBasedChatbot(correct_param1='value1', correct_param2='value2')
 transformer_chatbot = TransformerChatbot(model_path='./dialogue_model_final')
 
 # Route handlers for different pages
