@@ -38,7 +38,7 @@ class ChatBot:
         """
         # Set up prompt
         prompt = (
-            f"{user_input}<|assistant|>"
+            f"<|user|>{user_input}<|assistant|>"
         )
         
         # Tokenize input
