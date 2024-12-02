@@ -36,8 +36,10 @@ class ChatBot:
         Returns:
             str: The generated response from the model, cleaned of special tokens.
         """
-        # Format input with special tokens
-        prompt = f"<|prompter|>{user_input}<|assistant|>"
+        # Set up prompt
+        prompt = (
+            f"{user_input}<|assistant|>"
+        )
         
         # Tokenize input
         inputs = self.tokenizer(prompt, return_tensors="pt", padding=True)
@@ -47,9 +49,9 @@ class ChatBot:
         with torch.no_grad():
             outputs = self.model.generate(
                 inputs['input_ids'],
-                max_length=512,
+                max_length=256,
                 pad_token_id=self.tokenizer.eos_token_id,
-                temperature=0.5,
+                temperature=0.6,
                 do_sample=True,
                 top_p=0.9,
                 num_return_sequences=1,

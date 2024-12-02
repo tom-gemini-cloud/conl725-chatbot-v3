@@ -29,7 +29,7 @@ templates = Jinja2Templates(directory="templates")
 rule_based_chatbot = RuleBasedChatbot()
 transformer_chatbot = TransformerChatbot()
 
-# Route handlers for different pages
+# Route handlers
 @app.get("/")
 async def read_root(request: Request):
     """Serve the main landing page"""
