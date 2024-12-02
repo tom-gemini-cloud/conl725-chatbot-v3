@@ -2,21 +2,17 @@
 {% extends "base.html" %} {% block content %}
 <div class="chat-container">
   <header class="chat-header">
-    <h1>Rule-Based Chatbot</h1>
-    <p class="subtitle">
-      The rule-based chatbot operates by leveraging predefined rules and
-      patterns to generate responses. It uses Natural Language Processing (NLP)
-      techniques to preprocess user input, which involves tokenisation,
-      lemmatisation, and the removal of stopwords. The chatbot then matches the
-      processed input against a set of predefined responses stored in
-      dictionaries. If a direct match is found, it returns the corresponding
-      response. If not, it attempts to find relevant responses using keywords
-      extracted from the input. This approach allows the chatbot to provide
-      contextually appropriate answers based on the rules and data it has been
-      trained on. The chatbot's logic is implemented in Python, utilising
-      libraries such as NLTK for text processing and pickle for data storage and
-      retrieval.
-    </p>
+    <div class="header-content">
+      <a href="/" class="back-button">← Back</a>
+      <div class="header-text">
+        <h1>Rule-Based Chatbot</h1>
+        <p class="subtitle">
+          The rule-based chatbot operates using Natural Language Processing
+          (NLP) to preprocess user input, which involves tokenisation,
+          lemmatisation, and the removal of stopwords.
+        </p>
+      </div>
+    </div>
   </header>
 
   <main class="chat-box" id="chat-box">
@@ -27,7 +23,7 @@
 
   <footer class="chat-footer">
     <form
-      hx-post="/chat"
+      hx-post="/chat/rule-based"
       hx-target="#chat-box"
       hx-swap="beforeend"
       hx-indicator="#spinner"

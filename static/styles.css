@@ -5,9 +5,15 @@
   --secondary-color: #374151;
   --bg-color: #f0fdf4;
   --user-message-bg: #d1fae5;
-  --bot-message-bg: #ecfdf5;
+  --bot-message-bg: #e0ecdd;
   --border-color: #d1d5db;
   --shadow-color: rgba(16, 185, 129, 0.1);
+  --font-family: "Rajdhani", monospace;
+}
+
+/* Apply the font to the body */
+body {
+  font-family: var(--font-family);
 }
 
 .chat-container {
@@ -18,7 +24,7 @@
   box-shadow: 0 4px 20px -2px var(--shadow-color),
     0 0 80px -10px var(--shadow-color);
   padding: 2rem;
-  min-height: 500px;
+  min-height: 300px;
 }
 
 .chat-header {
@@ -49,6 +55,8 @@
   overflow-y: auto;
   background: var(--bg-color);
   scroll-behavior: smooth;
+  height: 300px;
+  max-height: 300px;
 }
 
 .chat-box::-webkit-scrollbar {
@@ -224,6 +232,8 @@
   justify-content: center;
   gap: 2rem;
   margin-top: 3rem;
+  padding: 0 1rem;
+  flex-wrap: wrap;
 }
 
 .chatbot-button {
@@ -256,6 +266,7 @@
   .chat-container {
     margin: 1rem;
     padding: 1rem;
+    width: 100%;
   }
 
   .button-container {
@@ -266,14 +277,52 @@
   .chatbot-button {
     width: 100%;
     text-align: center;
+    font-size: 0.9rem;
+    padding: 1rem 1.5rem;
   }
 
   .chat-header h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .message-input {
+    font-size: 0.9rem;
+  }
+
+  .send-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .chat-container {
+    margin: 0.5rem;
+    padding: 1rem;
+    width: calc(100% - 1rem);
+    box-sizing: border-box;
+  }
+
+  .button-container {
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-direction: column;
+    padding: 0 0.5rem;
+  }
+
+  .chatbot-button {
+    width: 100%;
+    text-align: center;
     font-size: 1rem;
+    padding: 1rem;
+    margin: 0;
+  }
+
+  .chat-header {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -294,4 +343,46 @@
 
 .back-button:hover {
   background-color: #5a6268;
+}
+
+.header-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.header-text {
+  flex: 1;
+}
+
+.chat-header .back-button {
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  align-self: flex-start;
+}
+
+.chat-header .back-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Add a medium breakpoint for tablets */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .chat-container {
+    margin: 1rem;
+    max-width: 90%;
+  }
+
+  .button-container {
+    gap: 1.5rem;
+  }
+
+  .chatbot-button {
+    padding: 1.25rem 2rem;
+  }
 }

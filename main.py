@@ -26,8 +26,8 @@ templates = Jinja2Templates(directory="templates")
 # Initialise both chatbots
 # Rule-based uses pre-processed conversation data
 # Transformer-based uses a fine-tuned dialogue model
-rule_based_chatbot = RuleBasedChatbot(correct_param1='value1', correct_param2='value2')
-transformer_chatbot = TransformerChatbot(model_path='./dialogue_model_final')
+rule_based_chatbot = RuleBasedChatbot()
+transformer_chatbot = TransformerChatbot()
 
 # Route handlers for different pages
 @app.get("/")
@@ -68,7 +68,7 @@ async def chat_transformer_based(request: Request):
     Returns both the user's message and the bot's response"""
     form_data = await request.form()
     user_message = form_data['message']
-    bot_response = transformer_chatbot.get_response(user_message)
+    bot_response = transformer_chatbot.generate_response(user_message)
     return templates.TemplateResponse(
         "chat_response.html", 
         {

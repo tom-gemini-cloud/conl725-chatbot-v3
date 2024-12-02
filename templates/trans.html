@@ -2,18 +2,18 @@
 {% extends "base.html" %} {% block content %}
 <div class="chat-container">
   <header class="chat-header">
-    <h1>Transformer Based Chatbot</h1>
-    <p class="subtitle">
-      The transformer-based chatbot utilises advanced machine learning models to
-      generate responses. It employs a pre-trained GPT-2 transformer model,
-      which has been fine-tuned on a dataset of conversations from the Cornell
-      Movie Dialog Corpus. The chatbot processes user input by tokenising it and
-      adding special tokens to indicate the start and end of the conversation.
-      The input is then fed into the model, which generates a response based on
-      the learned patterns and context from the training data. The chatbot's
-      logic is implemented using the transformers library from Hugging Face, and
-      it can leverage GPU acceleration for faster processing.
-    </p>
+    <div class="header-content">
+      <a href="/" class="back-button">← Back</a>
+      <div class="header-text">
+        <h1>Transformer Based Chatbot</h1>
+        <p class="subtitle">
+          The transformer-based chatbot uses advanced machine learning models to
+          generate responses. It employs a pre-trained GPT-2 transformer model,
+          which has been fine-tuned on a dataset of conversations from the
+          Cornell Movie Dialog Corpus.
+        </p>
+      </div>
+    </div>
   </header>
 
   <main class="chat-box" id="chat-box">
@@ -22,14 +22,9 @@
     </div>
   </main>
 
-  <!-- Add back button -->
-  <div class="back-button-container">
-    <a href="/" class="back-button">Back to Chatbot Hub</a>
-  </div>
-
   <footer class="chat-footer">
     <form
-      hx-post="/chat"
+      hx-post="/chat/transformer-based"
       hx-target="#chat-box"
       hx-swap="beforeend"
       hx-indicator="#spinner"

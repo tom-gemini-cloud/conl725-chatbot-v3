@@ -49,7 +49,7 @@ class ChatBot:
                 inputs['input_ids'],
                 max_length=512,
                 pad_token_id=self.tokenizer.eos_token_id,
-                temperature=0.7,
+                temperature=0.5,
                 do_sample=True,
                 top_p=0.9,
                 num_return_sequences=1,
@@ -60,24 +60,4 @@ class ChatBot:
         response = self.tokenizer.decode(outputs[0], skip_special_tokens=False)
         response = response.replace(prompt, "").replace("<|endoftext|>", "").strip()
         return response
-
-    def chat(self) -> None:
-        """
-        Start an interactive chat session with the model.
-        
-        Runs a continuous loop that accepts user input and generates responses
-        until the user types 'quit'.
-        """
-        print("Chat with the model (type 'quit' to exit)")
-        
-        while True:
-            user_input = input("\nYou: ")
-            if user_input.lower() == 'quit':
-                break
-                
-            response = self.generate_response(user_input)
-            print(f"\nBot: {response}")
-
-if __name__ == "__main__":
-    chatbot = ChatBot()
-    chatbot.chat()
+    
