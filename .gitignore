@@ -30,3 +30,6 @@ processed_data/
 
 # DS Store
 .DS_Store
+
+# Dialogue model folder
+dialogue_model_final/
