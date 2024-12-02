@@ -1,0 +1,83 @@
+<!-- templates/index.html -->
+{% extends "base.html" %} {% block content %}
+<div class="chat-container">
+  <header class="chat-header">
+    <h1>Rule-Based Chatbot</h1>
+    <p class="subtitle">
+      The rule-based chatbot operates by leveraging predefined rules and
+      patterns to generate responses. It uses Natural Language Processing (NLP)
+      techniques to preprocess user input, which involves tokenisation,
+      lemmatisation, and the removal of stopwords. The chatbot then matches the
+      processed input against a set of predefined responses stored in
+      dictionaries. If a direct match is found, it returns the corresponding
+      response. If not, it attempts to find relevant responses using keywords
+      extracted from the input. This approach allows the chatbot to provide
+      contextually appropriate answers based on the rules and data it has been
+      trained on. The chatbot's logic is implemented in Python, utilising
+      libraries such as NLTK for text processing and pickle for data storage and
+      retrieval.
+    </p>
+  </header>
+
+  <main class="chat-box" id="chat-box">
+    <div class="message bot-message">
+      <div class="message-content">Hello! How can I help you today?</div>
+    </div>
+  </main>
+
+  <footer class="chat-footer">
+    <form
+      hx-post="/chat"
+      hx-target="#chat-box"
+      hx-swap="beforeend"
+      hx-indicator="#spinner"
+      _="on submit target.reset()"
+    >
+      <div class="input-group">
+        <input
+          type="text"
+          name="message"
+          class="message-input"
+          id="message-input"
+          placeholder="Type your message..."
+          required
+        />
+        <button type="submit" class="send-button">
+          Send
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </form>
+    <div id="spinner" class="htmx-indicator">
+      <div class="loading-spinner"></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document.addEventListener("htmx:afterSwap", function (event) {
+    if (event.detail.target.id === "chat-box") {
+      event.detail.target.scrollTop = event.detail.target.scrollHeight;
+    }
+  });
+
+  document.querySelector("form").addEventListener("submit", function (event) {
+    setTimeout(function () {
+      document.getElementById("message-input").value = "";
+    }, 0);
+  });
+</script>
+{% endblock %}

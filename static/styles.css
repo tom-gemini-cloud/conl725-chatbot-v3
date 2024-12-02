@@ -17,30 +17,30 @@
   border-radius: 16px;
   box-shadow: 0 4px 20px -2px var(--shadow-color),
     0 0 80px -10px var(--shadow-color);
-  display: flex;
-  flex-direction: column;
-  height: 80vh;
+  padding: 2rem;
+  min-height: 500px;
 }
 
 .chat-header {
-  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
   background: var(--primary-color);
-  border-radius: 16px 16px 0 0;
-  position: relative;
+  border-radius: 12px;
+  color: white;
 }
 
 .chat-header h1 {
   margin: 0;
-  color: white;
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   font-weight: 600;
   letter-spacing: -0.5px;
 }
 
 .subtitle {
-  margin: 0.5rem 0 0;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
+  margin: 1rem 0 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
 }
 
 .chat-box {
@@ -217,4 +217,81 @@
 /* Enhance the scrollbar hover state */
 .chat-box::-webkit-scrollbar-thumb:hover {
   background: var(--primary-dark);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.chatbot-button {
+  padding: 1.5rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.chatbot-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.chatbot-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .chat-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .chatbot-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .chat-header h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+}
+
+.back-button-container {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #6c757d;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
 }
