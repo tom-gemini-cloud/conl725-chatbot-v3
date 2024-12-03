@@ -9,9 +9,6 @@ class Chatbot:
         """
         Initialise the RuleBasedChatbot by downloading necessary NLTK data files,
         initialising preprocessing tools, and loading data to build response dictionaries.
-        
-        The chatbot uses NLTK for natural language processing tasks such as tokenisation,
-        lemmatisation, and stopword removal.
         """
         nltk.download('punkt')
         nltk.download('wordnet')
@@ -28,8 +25,8 @@ class Chatbot:
         Load the conversations dataset and create a message lookup dictionary.
         If the message lookup dictionary does not exist, it is created and saved.
         
-        The conversations dictionary contains the full chat history, whilst the
-        message lookup provides quick access to individual messages by their ID.
+        The conversations dictionary contains the full chat history and the
+        message lookup provides access to individual messages by their ID.
         """
         with open('./processed_data/processed_conversations.pkl', 'rb') as f:
             self.conversations_dict: dict[str, list[dict]] = pickle.load(f)
@@ -51,9 +48,6 @@ class Chatbot:
         """
         Preprocess the input text by converting it to lowercase,
         tokenising (including punctuation removal), and lemmatising the words.
-        
-        This standardisation helps improve matching accuracy by reducing
-        variations in word forms (e.g., 'running' becomes 'run').
 
         Args:
             text: The input text to preprocess.
@@ -143,5 +137,17 @@ class Chatbot:
             if possible_responses:
                 return max(set(possible_responses), key=possible_responses.count)
             else:
-                return "I'm sorry, I didn't quite catch that. Could you please rephrase?"
+                return self.generate_fallback_response(user_input)
+
+    def generate_fallback_response(self, user_input: str) -> str:
+        """
+        Generate a fallback response when no suitable response is found.
+        
+        Args:
+            user_input (str): The original user input that couldn't be matched.
+            
+        Returns:
+            str: A default response asking the user to rephrase their input.
+        """
+        return "I'm sorry, I didn't quite catch that. Could you please rephrase?"
 

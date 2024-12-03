@@ -31,7 +31,7 @@ class NLTKDialogPreprocessor:
         vocabulary: FreqDist object containing word frequency distribution
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # Download required NLTK data
         nltk.download('punkt')      # For sentence and word tokenisation
         nltk.download('stopwords')  # For common words filtering
@@ -42,7 +42,7 @@ class NLTKDialogPreprocessor:
         self.conversations = {}  # Dictionary to store conversations by conversation_id
         self.vocabulary = FreqDist()
 
-    def load_json_conversations(self, json_data):
+    def load_json_conversations(self, json_data: str) -> None:
         """Load and organise conversations from JSONL-formatted data.
         
         Args:
@@ -82,7 +82,7 @@ class NLTKDialogPreprocessor:
         
         print(f"Loaded {len(self.conversations)} conversations")
 
-    def clean_text(self, text):
+    def clean_text(self, text: str) -> str:
         """Perform basic text cleaning operations.
         
         Args:
@@ -103,7 +103,7 @@ class NLTKDialogPreprocessor:
         
         return text.strip()
 
-    def preprocess_text(self, text):
+    def preprocess_text(self, text: str) -> str:
         """Execute the complete text preprocessing pipeline.
         
         Applies the following steps:
@@ -137,7 +137,7 @@ class NLTKDialogPreprocessor:
         
         return ' '.join(processed_tokens)
 
-    def build_vocabulary(self):
+    def build_vocabulary(self) -> None:
         """Create a frequency distribution of words from processed texts.
         
         Analyses all processed texts in the conversations and constructs a
@@ -161,7 +161,7 @@ class NLTKDialogPreprocessor:
         self.vocabulary = FreqDist(all_words)
         print(f"Vocabulary size: {len(self.vocabulary)}")
 
-    def process_dataset(self):
+    def process_dataset(self) -> None:
         """Execute the complete preprocessing pipeline on all conversations.
         
         Performs the following operations with progress visualisation:
@@ -202,7 +202,7 @@ class NLTKDialogPreprocessor:
         # Build vocabulary
         self.build_vocabulary()
     
-    def save_data(self, output_path):
+    def save_data(self, output_path: str) -> None:
         """Save processed conversations and vocabulary to disk.
         
         Args:
