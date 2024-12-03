@@ -1,4 +1,4 @@
-# Rule-Based Chatbot
+# Chatbot Hub
 
 ## Getting Started
 
