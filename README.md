@@ -1,69 +1,53 @@
 # Rule-Based Chatbot
 
-A rule-based chatbot implementation using Natural Language Processing (NLP) techniques and machine learning for intelligent conversation handling.
+## Getting Started
 
-## Features
-
-- Advanced text preprocessing and tokenization
-- Context-aware responses using conversation history
-- Multiple response strategies:
-  - Context-based matching
-  - Similarity-based matching
-  - Keyword-based matching
-- Error handling and logging
+Follow these steps to set up your environment and run the `main.py` application.
 
 ## Prerequisites
 
-- Python 3.8+
-- Virtual environment (recommended)
+- Ensure you have Python 3.8+ installed on your system.
 
-## Installation
+## Setup Instructions
 
-1. Clone the repository:
+1. **Create a Virtual Environment**
 
-   ```bash
-   git clone <repository-url>
-   cd <repository-directory>
-   ```
-
-2. Create and activate a virtual environment:
+   Create a virtual environment to manage dependencies separately from your system Python installation:
 
    ```bash
-   python -m venv .botvenv
-   source .botvenv/bin/activate  # On Windows, use `.botvenv\Scripts\activate`
+   python -m venv .venv
    ```
 
-3. Install the required dependencies:
+2. **Activate the Virtual Environment**
+
+   Activate the virtual environment. Use the appropriate command for your operating system:
+
+   - On macOS and Linux:
+     ```bash
+     source .venv/bin/activate
+     ```
+   - On Windows:
+     ```bash
+     .venv\Scripts\activate
+     ```
+
+3. **Install Required Libraries**
+
+   With the virtual environment activated, install the required libraries specified in `requirements.txt`:
+
    ```bash
    pip install -r requirements.txt
    ```
 
-## Usage
+4. **Run the Application**
 
-To run the chatbot, execute one of the following scripts:
+   Finally, run the `main.py` application:
 
-- For the basic version:
+   ```bash
+   python main.py
+   ```
 
-  ```bash
-  python rule_based/rule_based_v2.py
-  ```
+## Additional Notes
 
-- For the enhanced version with additional features:
-  ```bash
-  python rule_based/rule_based_v3.py
-  ```
-
-## Project Structure
-
-- `rule_based/`: Contains the main chatbot implementations.
-- `requirements.txt`: Lists all the Python dependencies.
-- `.gitignore`: Specifies files and directories to be ignored by git.
-- `README.md`: Project documentation.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+- Make sure that you are in the correct directory where `main.py` is located before running the application.
+- If you encounter any issues, make sure your virtual environment is activated and all dependencies are installed correctly.

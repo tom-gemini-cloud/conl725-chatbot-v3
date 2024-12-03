@@ -10,7 +10,6 @@ from rule_based.rule_based_v2 import Chatbot as RuleBasedChatbot
 from transformer_based.chat import ChatBot as TransformerChatbot
 
 # Handle SSL certificate verification
-# This is required for certain NLTK downloads
 try:
     _create_unverified_https_context = ssl._create_unverified_context
 except AttributeError:
@@ -45,7 +44,9 @@ async def transformer_based(request: Request):
     """Serve the transformer-based chatbot interface"""
     return templates.TemplateResponse("trans.html", {"request": request})
 
-# Chat endpoint handlers
+# Chat endpoint handlers for requests from the HTMX frontend
+
+# Rule-based chat endpoint
 @app.post("/chat/rule-based")
 async def chat_rule_based(request: Request):
     """Handle chat interactions with the rule-based model
@@ -62,6 +63,7 @@ async def chat_rule_based(request: Request):
         }
     )
 
+# Transformer-based chat endpoint
 @app.post("/chat/transformer-based")
 async def chat_transformer_based(request: Request):
     """Handle chat interactions with the transformer-based model
@@ -78,7 +80,7 @@ async def chat_transformer_based(request: Request):
         }
     )
 
-# Run the application if executed directly
+# Run the Uvicorn server if executed directly
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
