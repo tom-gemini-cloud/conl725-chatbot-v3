@@ -9,6 +9,9 @@ class Chatbot:
         """
         Initialise the RuleBasedChatbot by downloading necessary NLTK data files,
         initialising preprocessing tools, and loading data to build response dictionaries.
+        
+        The chatbot uses NLTK for natural language processing tasks such as tokenisation,
+        lemmatisation, and stopword removal.
         """
         nltk.download('punkt')
         nltk.download('wordnet')
@@ -24,6 +27,9 @@ class Chatbot:
         """
         Load the conversations dataset and create a message lookup dictionary.
         If the message lookup dictionary does not exist, it is created and saved.
+        
+        The conversations dictionary contains the full chat history, whilst the
+        message lookup provides quick access to individual messages by their ID.
         """
         with open('./processed_data/processed_conversations.pkl', 'rb') as f:
             self.conversations_dict: dict[str, list[dict]] = pickle.load(f)
@@ -34,7 +40,7 @@ class Chatbot:
 
         except FileNotFoundError:
             self.message_lookup = {}
-            for conv_id, messages in self.conversations_dict.items():
+            for _, messages in self.conversations_dict.items():
                 for message in messages:
                     self.message_lookup[message['id']] = message
                     
@@ -45,12 +51,15 @@ class Chatbot:
         """
         Preprocess the input text by converting it to lowercase,
         tokenising (including punctuation removal), and lemmatising the words.
+        
+        This standardisation helps improve matching accuracy by reducing
+        variations in word forms (e.g., 'running' becomes 'run').
 
         Args:
             text: The input text to preprocess.
 
         Returns:
-            The preprocessed text.
+            The preprocessed text as a single string with standardised tokens.
         """
         text = text.lower()
         tokens = wordpunct_tokenize(text)
@@ -62,13 +71,15 @@ class Chatbot:
 
     def get_keywords(self, text: str) -> list[str]:
         """
-        Extract keywords from the input text by removing stopwords.
+        Extract meaningful keywords from the input text by removing common stopwords.
+        Stopwords are frequent words like 'the', 'is', 'at' that typically don't
+        carry significant meaning.
 
         Args:
             text: The input text to extract keywords from.
 
         Returns:
-            A list of keywords.
+            A list of keywords with stopwords removed.
         """
         tokens = word_tokenize(text)
         keywords = [word for word in tokens if word not in self.stop_words]
@@ -77,6 +88,11 @@ class Chatbot:
     def build_response_dictionaries(self) -> None:
         """
         Build response and keyword dictionaries from conversation pairs.
+        
+        Creates two main dictionaries:
+        1. response_dict: Maps preprocessed inputs directly to responses
+        2. keyword_dict: Maps individual keywords to possible responses,
+           used as a fallback when exact matches aren't found
         """
         conversation_pairs: list[tuple[str, str]] = []
         for conv_id, messages in self.conversations_dict.items():
@@ -104,14 +120,16 @@ class Chatbot:
 
     def get_response(self, user_input: str) -> str:
         """
-        Get a response for the given user input by matching preprocessed input
-        or using keywords to find possible responses.
+        Get a response for the given user input using a two-step matching process:
+        1. Try to find an exact match with a preprocessed previous input
+        2. If no exact match, look for responses associated with matching keywords
+           and return the most common response
 
         Args:
             user_input: The user's input message.
 
         Returns:
-            The chatbot's response.
+            The chatbot's response, either matched exactly or based on keywords.
         """
         preprocessed_input = self.preprocess(user_input)
         if preprocessed_input in self.response_dict:
@@ -127,21 +145,3 @@ class Chatbot:
             else:
                 return "I'm sorry, I didn't quite catch that. Could you please rephrase?"
 
-    def run_chat_loop(self) -> None:
-        """
-        Run the chat loop, allowing the user to interact with the chatbot
-        until they type 'exit' or 'quit'.
-        """
-        print("Bot: Hello! How can I assist you today? (Type 'exit' to quit)")
-        while True:
-            user_input = input("You: ")
-            if user_input.lower() in ['exit', 'quit']:
-                print("Bot: Goodbye!")
-                break
-            response = self.get_response(user_input)
-            print(f"Bot: {response}")
-
-
-if __name__ == "__main__":
-    chatbot = Chatbot()
-    chatbot.run_chat_loop()

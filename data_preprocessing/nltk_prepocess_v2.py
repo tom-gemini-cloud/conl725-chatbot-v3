@@ -1,3 +1,4 @@
+# Import necessary libraries
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -9,6 +10,7 @@ import os
 import ssl
 from tqdm import tqdm
 import random
+
 # Download required NLTK data ignoring SSL errors
 try:
     _create_unverified_https_context = ssl._create_unverified_context
@@ -20,12 +22,10 @@ else:
 class NLTKDialogPreprocessor:
     """A class for preprocessing dialogue text using NLTK tools.
     
-    This class provides functionality for loading, preprocessing, and analysing conversational
-    text data using NLTK. It handles text cleaning, tokenisation, lemmatisation, and
-    vocabulary building.
+    This class provides functionality for loading, preprocessing, and analysing conversational text data using NLTK. It handles text cleaning, tokenisation, lemmatisation and vocabulary building.
     
     Attributes:
-        lemmatizer: WordNetLemmatizer instance for word lemmatisation
+        lemmatiser: WordNetLemmatizer instance for word lemmatisation
         stop_words: Set of English stop words from NLTK
         conversations: Dictionary storing conversations indexed by conversation_id
         vocabulary: FreqDist object containing word frequency distribution
@@ -34,8 +34,8 @@ class NLTKDialogPreprocessor:
     def __init__(self):
         # Download required NLTK data
         nltk.download('punkt')      # For sentence and word tokenisation
-        nltk.download('stopwords')  # For common words filtering (e.g., 'the', 'is', 'at')
-        nltk.download('wordnet')    # For word lemmatisation (reducing words to base form)
+        nltk.download('stopwords')  # For common words filtering
+        nltk.download('wordnet')    # For word lemmatisation
         
         self.lemmatiser = WordNetLemmatizer()
         self.stop_words = set(stopwords.words('english'))
@@ -43,11 +43,11 @@ class NLTKDialogPreprocessor:
         self.vocabulary = FreqDist()
 
     def load_json_conversations(self, json_data):
-        """Load and organise conversations from JSON-formatted data.
+        """Load and organise conversations from JSONL-formatted data.
         
         Args:
-            json_data (str): JSON-formatted string containing conversation data,
-                           with one JSON object per line
+            json_data (str): JSONL-formatted string containing conversation data,
+                             with one JSON object per line
         
         The method expects each JSON object to have the following structure:
             {
@@ -219,19 +219,21 @@ class NLTKDialogPreprocessor:
         """
         os.makedirs(output_path, exist_ok=True)
         
-        # Save conversations in both pickle and JSON formats
+        # Save conversations in both Pickle and JSON formats
         with open(os.path.join(output_path, 'processed_conversations.pkl'), 'wb') as f:
             pickle.dump(self.conversations, f)
         
         with open(os.path.join(output_path, 'processed_conversations.json'), 'w') as f:
             json.dump(self.conversations, f, indent=2)
         
-        # Save vocabulary in both pickle and JSON formats
+        # Save vocabulary in Pickle format
         with open(os.path.join(output_path, 'vocabulary.pkl'), 'wb') as f:
             pickle.dump(self.vocabulary, f)
         
         # Convert FreqDist to dictionary for JSON serialization
         vocab_dict = dict(self.vocabulary)
+
+        # Save vocabulary in JSON format
         with open(os.path.join(output_path, 'vocabulary.json'), 'w') as f:
             json.dump(vocab_dict, f, indent=2)
         
