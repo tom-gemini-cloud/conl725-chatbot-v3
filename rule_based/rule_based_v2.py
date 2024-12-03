@@ -3,7 +3,7 @@ import nltk
 from nltk.tokenize import word_tokenize, wordpunct_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
-
+import random
 class Chatbot:
     def __init__(self) -> None:
         """
@@ -142,12 +142,22 @@ class Chatbot:
     def generate_fallback_response(self, user_input: str) -> str:
         """
         Generate a fallback response when no suitable response is found.
+        Randomly selects from a list of default responses to provide variety.
         
         Args:
             user_input (str): The original user input that couldn't be matched.
             
         Returns:
-            str: A default response asking the user to rephrase their input.
+            str: A randomly selected default response.
         """
-        return "I'm sorry, I didn't quite catch that. Could you please rephrase?"
+        fallback_responses = [
+            "I'm sorry, I didn't quite catch that. Could you please rephrase?",
+            "I'm not sure I understand. Could you try explaining that differently?",
+            "Hmm, I'm having trouble following. Please rephrase that?",
+            "I'm still learning and that's a bit unclear to me. Could you say it another way?",
+            "I don't quite understand what you mean. Could you elaborate?",
+            "That's not something I'm familiar with. Could you try expressing it differently?"
+        ]
+        
+        return random.choice(fallback_responses)
 
