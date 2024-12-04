@@ -1,0 +1,16 @@
+<!-- templates/index.html -->
+{% extends "base.html" %} {% block content %}
+<div class="chat-container">
+  <header class="chat-header">
+    <h1>Welcome to the Chatbot Hub</h1>
+    <p class="subtitle">Please choose your chatbot</p>
+  </header>
+
+  <main class="button-container">
+    <a href="rule-based" class="chatbot-button">Rule-Based Chatbot</a>
+    <a href="transformer-based" class="chatbot-button"
+      >Transformer-Based Chatbot</a
+    >
+  </main>
+</div>
+{% endblock %}
