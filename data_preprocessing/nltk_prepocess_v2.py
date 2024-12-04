@@ -241,7 +241,7 @@ class NLTKDialogPreprocessor:
 
 # Main execution block
 if __name__ == "__main__":
-    # Initialise preprocessor
+    # Initialise the preprocessor
     preprocessor = NLTKDialogPreprocessor()
     
     # Load and process the dataset

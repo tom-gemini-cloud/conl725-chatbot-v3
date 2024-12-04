@@ -1,4 +1,3 @@
-/* static/styles.css */
 :root {
   --primary-color: #74c563;
   --primary-dark: #37a837;
@@ -21,7 +20,6 @@
   --neutral-6: rgba(255, 255, 255, 0.3);
 }
 
-/* Apply the font to the body */
 body {
   font-family: var(--font-family);
   font-size: 16px;
@@ -214,7 +212,6 @@ body {
   }
 }
 
-/* Add a pulse animation to new messages */
 .message:last-child .message-content {
   animation: pulse 1s ease;
 }
@@ -231,7 +228,6 @@ body {
   }
 }
 
-/* Enhance the scrollbar hover state */
 .chat-box::-webkit-scrollbar-thumb:hover {
   background: var(--primary-dark);
 }
@@ -269,7 +265,6 @@ body {
   transform: translateY(0);
 }
 
-/* Responsive design */
 @media (max-width: 640px) {
   .chat-container {
     margin: 1rem;
@@ -377,7 +372,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* Add a medium breakpoint for tablets */
 @media (min-width: 641px) and (max-width: 1024px) {
   .chat-container {
     margin: 1rem;
